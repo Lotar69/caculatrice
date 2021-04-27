@@ -1,21 +1,21 @@
-def ask_user(sentence = "Type a number:"): # change all the names of functons (function have to be lowercase
-    choice = input(f"""{sentence}\n>""")
-    return choice
+def ask_user(sentence = "Type number to keep calculating or type '=' to get the result:"): 
+    """Transform input to variable"""
+    return input(f"""{sentence}\n>""")
 
-def add(a,b): # do_something
-    """Functions to add numbers"""
+def add(a,b): 
+    """Return sum of the numbers a and b"""
     return a+b
 
 def multiply(a,b):
-    """Functions to multiply numbers"""
+    """Return product of a and b"""
     return a*b
 
 def divide(a,b):
-    """Functions to divide numbers"""
+    """Return result of division a on b"""
     return a/b
 
 def substract(a,b):
-    """Functions to substract numbers"""
+    """Return result of substraction b from a"""
     return a-b
 
 def display_interface():
@@ -28,14 +28,13 @@ def display_interface():
     if choice not in ['1','2','3','4']:
         print("Unknown command")
         return
-
     a = ask_user("Type first number:")
     if not a.isdigit():
         print(f"You did't type any number to make calculation" )
         return
     a = int(a)
     res = a
-    b = ask_user("Type number or = to get the result:")
+    b = ask_user()
     if not b.isdigit():
         print(f"Your result is {res}" )
         return
@@ -51,13 +50,12 @@ def display_interface():
             try:
                 res = divide(a,b)
             except ZeroDivisionError:
-                print("You can not devide by zero")
+                print("You can not devide by zero!")
                 return
-
         a = res
-        b = ask_user("Type number or = to get the result:")
+        b = ask_user()
     print(f"Your result is {res}" )
-    return #exit while cycle after showing the result of calculation
+    return 
 
 
 
