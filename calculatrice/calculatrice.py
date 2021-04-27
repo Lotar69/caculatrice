@@ -12,12 +12,7 @@ def multiply(a,b):
 
 def divide(a,b):
     """Functions to divide numbers"""
-    res = 0
-    if b == 0:
-        raise ZeroDivisionError
-    else:
-        res = a/b
-    return res
+    return a/b
 
 def substract(a,b):
     """Functions to substract numbers"""
