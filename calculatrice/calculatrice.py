@@ -56,8 +56,3 @@ def display_interface():
         b = ask_user()
     print(f"Your result is {res}" )
     return 
-
-
-
-
-
