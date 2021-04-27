@@ -83,6 +83,10 @@ def display_interface():
         elif choice == 4:
             choice = ask_user("Saisir un chiffre à DIVISER ou clicker sur '=' ")
             result = division(choice)
+        else:
+            print("Mauvaise réponse")
+            print("----------------")
+            display_interface()
         return print(f"Le resultat est ==> {result}")
 
 display_interface()
