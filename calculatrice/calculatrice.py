@@ -2,55 +2,26 @@ def ask_user(sentence = "Type a number:"): # change all the names of functons (f
     choice = input(f"""{sentence}\n>""")
     return choice
 
-def add(): # do_something
+def add(a,b): # do_something
     """Functions to add numbers"""
-    res = 0
-    number = ask_user("Type a number to add or type = to get the result:")
-    while number.isdigit():
-        res += int(number)
-        number = ask_user("Type a number to add or type = to get the result:")
-    return res
+    return a+b
 
-def multiply():
+def multiply(a,b):
     """Functions to multiply numbers"""
-    res = 1
-    number = ask_user("Type a number to multiply or type = to get the result:")
-    while number.isdigit():
-        res *= int(number)
-        number = ask_user("Type a number to multiply or type = to get the result:")
-    return res
+    return a*b
 
-def divide():
+def divide(a,b):
     """Functions to divide numbers"""
-    res = 0 # result if no number were typed
-    first_number = ask_user("Type a number to divide or type = to get the result:")
-    if first_number.isdigit():
-        res = int(first_number)
-        number = ask_user("Type a number to divide or type = to get the result:")
-        while number.isdigit():
-            # here we need to catch an error
-            if int(number) == 0 :
-                return 0
-            res /= int(number)
-            number = ask_user("Type a number to divide or type = to get the result:")
-        else:
-            res = res
+    res = 0
+    if b == 0:
+        raise ZeroDivisionError
+    else:
+        res = a/b
     return res
 
-def substract():
+def substract(a,b):
     """Functions to substract numbers"""
-    res = 0
-    number = ask_user("Type a number to substract or type = to get the result:")
-    if number.isdigit():
-        res = int(number)
-    else:
-        return res
-    while number.isdigit: # do_something
-        number = ask_user("Type a number to substract or type = to get the result:")
-        if not number.isdigit():
-            return res
-        res -= int(number)
-    return res
+    return a-b
 
 def display_interface():
     choice = ask_user("""
@@ -59,17 +30,39 @@ def display_interface():
     2 - to substract numbers
     3 - to multiply numbers
     4 - to divide numbers""")
-    while choice.isdigit():
+    if choice not in ['1','2','3','4']:
+        print("Unknown command")
+        return
+
+    a = ask_user("Type first number:")
+    if not a.isdigit():
+        print(f"You did't type any number to make calculation" )
+        return
+    a = int(a)
+    res = a
+    b = ask_user("Type number or = to get the result:")
+    if not b.isdigit():
+        print(f"Your result is {res}" )
+        return
+    while b.isdigit():
+        b = int(b)
         if choice == '1':
-            result = add()
+            res = add(a,b)
         elif choice == '2':
-            result = substract()
+            res = substract(a,b)
         elif choice == '3':
-            result = multiply()
+            res = multiply(a,b)
         elif choice == '4':
-            result = divide()
-        print(f"The result is ==> {result}")
-        break #exit while cycle after showing the result of calculation
+            try:
+                res = divide(a,b)
+            except ZeroDivisionError:
+                print("You can not devide by zero")
+                return
+
+        a = res
+        b = ask_user("Type number or = to get the result:")
+    print(f"Your result is {res}" )
+    return #exit while cycle after showing the result of calculation
 
 
 
