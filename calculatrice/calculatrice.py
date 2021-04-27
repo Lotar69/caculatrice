@@ -1,78 +1,77 @@
-def askUser(sentence = "Saisir un chiffre"): # do_something
+def ask_user(sentence = "Type a number:"): # change all the names of functons (function have to be lowercase
     choice = input(f"""{sentence}\n>""")
     return choice
 
-def Addition(number): # do_something
-    list_numbers = []
+def add(): # do_something
+    """Functions to add numbers"""
+    res = 0
+    number = ask_user("Type a number to add or type = to get the result:")
     while number.isdigit():
-        if number.isdigit():
-            list_numbers.append(int(number))
-        number = ask_user("Saisir un ciffre à additionner ou clicker sur '=' ")
-    result = list_numbers # do_something
-    return result
+        res += int(number)
+        number = ask_user("Type a number to add or type = to get the result:")
+    return res
 
-def multplication(number):
-    list_numbers = []
+def multiply():
+    """Functions to multiply numbers"""
+    res = 1
+    number = ask_user("Type a number to multiply or type = to get the result:")
     while number.isdigit():
-        if number.isdigit():
-            list_numbers.append(number) # do_something
-        number = ask_user("Saisir un ciffre à multiplier ou clicker sur '=' ")
-    for list_number, index in zip(list_numbers,list(range(len(list_numbers)))): # refactoriser
-        if index == '0': # do_something
-            result = list_number
+        res *= int(number)
+        number = ask_user("Type a number to multiply or type = to get the result:")
+    return res
+
+def divide():
+    """Functions to divide numbers"""
+    res = 0 # result if no number were typed
+    first_number = ask_user("Type a number to divide or type = to get the result:")
+    if first_number.isdigit():
+        res = int(first_number)
+        number = ask_user("Type a number to divide or type = to get the result:")
+        while number.isdigit():
+            # here we need to catch an error
+            if int(number) == 0 :
+                return 0
+            res /= int(number)
+            number = ask_user("Type a number to divide or type = to get the result:")
         else:
-            result = result / list_number # do_something
-    return result
+            res = res
+    return res
 
-def division(number):
-    list_numbers = []
-    while number.isdigit():
-        if number.isdigit():
-            list_numbers.append(number) # do_something
-        number = ask_user("Saisir un ciffre à multiplier ou clicker sur '=' ")
-    for list_number, index in zip(list_numbers,list(range(len(list_numbers)))): # refactoriser
-        if index == 0:
-            result = list_number
-        else:
-            result = result + list_number # do_something
-    return result
-
-def soustraction(number):
-    list_numbers = []
+def substract():
+    """Functions to substract numbers"""
+    res = 0
+    number = ask_user("Type a number to substract or type = to get the result:")
+    if number.isdigit():
+        res = int(number)
+    else:
+        return res
     while number.isdigit: # do_something
-        if number.isdigit():
-            list_numbers.append(number) # do_something
-        number = ask_user("Saisir un ciffre à additionner ou clicker sur '=' ")
-    i = 0
-    for list_number in list_numbers:
-        if i == 0:
-            result = list_number
-        else:
-            result = result - list_number
-        i = i + 1
-    return result
+        number = ask_user("Type a number to substract or type = to get the result:")
+        if not number.isdigit():
+            return res
+        res -= int(number)
+    return res
 
 def display_interface():
     choice = ask_user("""
-    Tu veux :
-    1. Additionner Tape 1
-    2. Soustraire Tape 2
-    3. Multiplier Tape 3
-    4. Diviser Tape 4""")
+    Type :
+    1 - to add numbers
+    2 - to substract numbers
+    3 - to multiply numbers
+    4 - to divide numbers""")
     while choice.isdigit():
-        choice = choice # do_something
-        if choice == 1:
-            choice = ask_user("Saisir un ciffre à ADDITIONNER ou clicker sur '=' ")
-            result = addition(choice)
-        elif choice == 2:
-            choice = ask_user("Saisir un ciffre à SOUSTRAIRE ou clicker sur '=' ")
-            result = soustraction(choice)
-        elif choice == 3:
-            choice = ask_user("Saisir un ciffre à MULTIPLIER ou clicker sur '=' ")
-            result = multplication(choice)
-        elif choice == 4:
-            choice = ask_user("Saisir un ciffre à MULTIPLIER ou clicker sur '=' ")
-            result = division(choice)
-        return print(f"Le resultat est ==> {result}")
+        if choice == '1':
+            result = add()
+        elif choice == '2':
+            result = substract()
+        elif choice == '3':
+            result = multiply()
+        elif choice == '4':
+            result = divide()
+        print(f"The result is ==> {result}")
+        break #exit while cycle after showing the result of calculation
+
+
+
 
 
